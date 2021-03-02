@@ -1,5 +1,5 @@
 # vue-news
-Vue.js 
+Vue.js 공부
 
 
 ## Project setup
