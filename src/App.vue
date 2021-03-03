@@ -1,12 +1,8 @@
 <template>
   <div id="app">
-    <!-- Style: Strongly Recoommended 
-    <ToolBar></ToolBar>
-    Style: Essential
-    -->
+    <!-- Style: Strongly Recoommended <ToolBar></ToolBar> Style: Essential -->
     <tool-bar></tool-bar>
-    <router-view></router-view> 
-
+    <router-view></router-view>
   </div>
 </template>
 
@@ -19,7 +15,6 @@ export default {
   },
 };
 </script>
-
 
 <style>
 body {
