@@ -1,16 +1,17 @@
 <template>
   <div>
-    <div v-for="user in this.$store.state.news" :key="user.id">{{ user.title }}</div>
+    <div v-for="user in this.$store.state.news" :key="user.id">
+      {{ user.title }}
+    </div>
   </div>
 </template>
 
 <script>
-import { fetchNewsList } from '../api/index.js';
+// import { fetchNewsList } from '../api/index.js';
 
 export default {
   created() {
-    this.$store.dispatch('FETCH_NEWS');
-    
+    this.$store.dispatch("FETCH_NEWS")
 
     // 1
     // fetchNewsList()
@@ -23,8 +24,7 @@ export default {
     //     console.log(error);
     //   });
   },
-};
+}
 </script>
 
-<style>
-</style>
+<style></style>

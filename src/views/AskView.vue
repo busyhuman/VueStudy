@@ -1,31 +1,36 @@
 <template>
   <div>
-    <div v-for="item in ask" :key="item.id">{{ item.title }}</div>
+    <div v-for="item in fetchedAsk" :key="item.id">
+      {{ item.title }}
+    </div>
   </div>
 </template>
 
 <script>
-
-import { fetchAskList } from '../api/index.js';
+// import { mapState} from 'vuex';
+import { mapGetters } from "vuex"
 
 export default {
-  data() {
-    return {
-      ask: []
-    }
-  },
-  created() {
-    var vm = this;
+  computed: {
+    ...mapGetters(["fetchedAsk"]),
 
-    fetchAskList()
-    .then(function(response) {
-      vm.ask = response.data;
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
+    // Spread 연산자(...)를 사용하면 배열이나 문자열과 같이 반복 가능한 문자를
+    // 0개 이상의 인수 또는 요소로 확장하여, 0개 이상의 키-값의 객체로 확장시킬 수 있다.
+
+    // #2
+    // ...mapState({
+    //   ask: (state) => state.ask,
+    // }),
+
+    // #1
+    // ask() {
+    //   return this.$store.state.ask
+    // },
   },
-};
+
+  created() {
+    this.$store.dispatch("FETCH_ASK")
+  },
+}
 </script>
-<style>
-</style>
+<style></style>
