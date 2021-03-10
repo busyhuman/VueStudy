@@ -11,13 +11,19 @@ export const store = new Vuex.Store({
         news: [],
         jobs: [],
         ask: [],
+        user: {},
+        item: {},
     },
 
     // getters는 computed와 같다. 다만 store에 있는 것 뿐이다.
     getters: {
         fetchedAsk(state) {
             return state.ask;
-        }
+        },
+
+        fetchedItem(state) {
+            return state.item;
+        },
     },
 
     mutations,
