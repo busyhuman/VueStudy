@@ -27,15 +27,15 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
+import { mapGetters } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters(["fetchedItem"]),
+    ...mapGetters(['fetchedItem']),
   },
   created() {
     const itemId = this.$route.params.id
-    this.$store.dispatch("FETCH_ITEM", itemId)
+    this.$store.dispatch('FETCH_ITEM', itemId)
   },
 }
 </script>
