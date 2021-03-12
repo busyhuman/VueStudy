@@ -2,11 +2,11 @@
   <div>
     <!-- :info="userInfo"는 propsData로 info에 userInfo(state에 user 데이터를 갖고 있는)를 넣어주겠다는 것이다. 
     그러면 UnserProfile에서 info를 받아 화면에 뿌려주는 것이다. -->
-    <user-profile :info="userInfo"></user-profile>
-
-    <!-- <p>name : {{ userInfo.id }}</p>
-    <p>karma : {{ userInfo.karma }}</p>
-    <p>created : {{ userInfo.created }}</p> -->
+    <user-profile :info="userInfo">
+      <div slot="username">{{ userInfo.id }}</div>
+      <span slot="time">{{ 'Joined ' + userInfo.created }}, </span>
+      <span slot="karma">{{ userInfo.karma }}</span>
+    </user-profile>
   </div>
 </template>
 
