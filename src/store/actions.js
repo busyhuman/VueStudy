@@ -6,6 +6,7 @@ export default {
             .then(response => {
                 // Mutations 호출
                 context.commit('SET_NEWS', response.data);
+                return response;
             })
             .catch(error => {
                 console.log(error);
