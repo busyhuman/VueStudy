@@ -13,6 +13,7 @@ export const store = new Vuex.Store({
         ask: [],
         user: {},
         item: {},
+        list: [],
     },
 
     // getters는 computed와 같다. 다만 store에 있는 것 뿐이다.

@@ -26,10 +26,16 @@ function fetchUserInfo(username) {
 function fetchCommentItem(id) {
     return axios.get(`${config.baseurl}item/${id}.json`);
 }
+
+function fetchList(pageName) {
+    return axios.get(`${config.baseurl}${pageName}1.json`);
+}
+
 export {
     fetchNewsList,
     fetchAskList,
     fetchJobsList,
     fetchUserInfo,
     fetchCommentItem,
+    fetchList,
 }
