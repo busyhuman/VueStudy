@@ -28,7 +28,7 @@ function fetchCommentItem(id) {
 }
 
 function fetchList(pageName) {
-    return axios.get(`${config.baseurl}${pageName}1.json`);
+    return axios.get(`${config.baseurl}${pageName}/1.json`);
 }
 
 export {
