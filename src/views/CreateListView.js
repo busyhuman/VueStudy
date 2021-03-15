@@ -7,6 +7,7 @@ export default function createListView(name) {
     name,
 
     created() {
+
       bus.$emit('start:spinner');
       this.$store
         .dispatch('FETCH_LIST', this.$route.name)
@@ -17,18 +18,34 @@ export default function createListView(name) {
         .catch((error) => {
           console.log(error);
         });
-      //   setTimeout(() => {
-      //     this.$store
-      //       .dispatch('FETCH_LIST', this.$route.name)
-      //       .then(() => {
-      //         console.log('fetched');
-      //         bus.$emit('end:spinner');
-      //       })
-      //       .catch((error) => {
-      //         console.log(error);
-      //       });
-      //   }, 3000);
+
+      setTimeout(() => {
+        this.$store
+          .dispatch('FETCH_LIST', this.$route.name)
+          .then(() => {
+            console.log('fetched');
+            bus.$emit('end:spinner');
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }, 3000);
     },
+
+    // beforeEnter: (to, from, next) => {
+    //   bus.$emit('start:spinner');
+    //   this.$store
+    //     .dispatch('FETCH_LIST', to.name)
+    //     .then(() => {
+    //       console.log('fetched');
+    //       bus.$emit('end:spinner');
+    //       next();
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // },
+
     render(createElement) {
       return createElement(ListView);
     },

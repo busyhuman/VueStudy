@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import UserView from '../views/UserView.vue';
 import ItemView from '../views/ItemView.vue';
 import createListView from '../views/CreateListView.js';
+
 Vue.use(VueRouter);
 
 export const router = new VueRouter({
@@ -19,6 +20,7 @@ export const router = new VueRouter({
       name: 'news',
       // component: url 주소로 갔을 때 표시될 컴포넌트
       component: createListView('NewsView'),
+
     },
     {
       path: '/ask',
