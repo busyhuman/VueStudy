@@ -1,53 +1,22 @@
-import ListView from './ListView.vue';
-import bus from '../utils/bus.js';
+import ListView from "@/views/ListView";
+import bus from "@/utils/bus";
 
+// NewsView, JobsView, AskView에서 사용하는 HOC
 export default function createListView(name) {
   return {
-    // 재사용할 인스턴스(컴포넌트) 옵션들이 들어갈 자리
-    name,
-
+    // 재사용할 인스턴스 옵션들;
+    name: name,
     created() {
-
-      bus.$emit('start:spinner');
-      this.$store
-        .dispatch('FETCH_LIST', this.$route.name)
+      this.$store.dispatch('FETCH_LIST', this.$route.name)
         .then(() => {
-          console.log('fetched');
           bus.$emit('end:spinner');
         })
-        .catch((error) => {
+        .catch((error => {
           console.log(error);
-        });
-
-      setTimeout(() => {
-        this.$store
-          .dispatch('FETCH_LIST', this.$route.name)
-          .then(() => {
-            console.log('fetched');
-            bus.$emit('end:spinner');
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }, 3000);
+        }));
     },
-
-    // beforeEnter: (to, from, next) => {
-    //   bus.$emit('start:spinner');
-    //   this.$store
-    //     .dispatch('FETCH_LIST', to.name)
-    //     .then(() => {
-    //       console.log('fetched');
-    //       bus.$emit('end:spinner');
-    //       next();
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // },
-
     render(createElement) {
       return createElement(ListView);
-    },
-  };
+    }
+  }
 }

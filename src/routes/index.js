@@ -1,36 +1,71 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import UserView from '../views/UserView.vue';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import NewsView from '../views/NewsView.vue';  // HOC 에  의해 사용하지 않음.
+import AskView from '../views/AskView.vue';  // HOC 에  의해 사용하지 않음.
+import JobsView from '../views/JobsView.vue';  // HOC 에  의해 사용하지 않음.
 import ItemView from '../views/ItemView.vue';
-import createListView from '../views/CreateListView.js';
-
-Vue.use(VueRouter);
+import UserView from '../views/UserView.vue';
+import { store } from '../store/index.js'
+import bus from "@/utils/bus";
+Vue.use(VueRouter)
 
 export const router = new VueRouter({
   mode: 'history',
   routes: [
     {
       path: '/',
-      redirect: '/news',
+      redirect: '/news'
     },
     {
-      // path: url 주소
-      path: '/news',
-      // name: url 주소의 이름
       name: 'news',
-      // component: url 주소로 갔을 때 표시될 컴포넌트
-      component: createListView('NewsView'),
-
+      path: '/news',
+      component: NewsView,
+      // component: createListView('NewsView'), //HOC 사용시
+      beforeEnter: (to, from, next) => {
+        bus.$emit('start:spinner');
+        store.dispatch('FETCH_LIST', to.name)
+          .then(() => {
+            // bus.$emit('end:spinner');
+            next();
+          })
+          .catch((error => {
+            console.log(error);
+          }));
+      }
     },
     {
-      path: '/ask',
       name: 'ask',
-      component: createListView('AskView'),
+      path: '/ask',
+      component: AskView,
+      // component: createListView('AskView'),
+      beforeEnter: (to, from, next) => {
+        bus.$emit('start:spinner');
+        store.dispatch('FETCH_LIST', to.name)
+          .then(() => {
+            // bus.$emit('end:spinner');
+            next();
+          })
+          .catch((error => {
+            console.log(error);
+          }));
+      }
     },
     {
-      path: '/jobs',
       name: 'jobs',
-      component: createListView('JobsView'),
+      path: '/jobs',
+      component: JobsView,
+      // component: createListView('JobsView'),
+      beforeEnter: (to, from, next) => {
+        bus.$emit('start:spinner');
+        store.dispatch('FETCH_LIST', to.name)
+          .then(() => {
+            // bus.$emit('end:spinner');
+            next();
+          })
+          .catch((error => {
+            console.log(error);
+          }));
+      }
     },
     {
       path: '/user/:id',
@@ -40,5 +75,5 @@ export const router = new VueRouter({
       path: '/item/:id',
       component: ItemView,
     },
-  ],
-});
+  ]
+})

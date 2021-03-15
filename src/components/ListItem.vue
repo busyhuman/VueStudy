@@ -45,10 +45,10 @@
 export default {
   computed: {
     listItems: function() {
-      return this.$store.state.list;
+      return this.$store.state.list
     },
   },
-};
+}
 </script>
 
 <style scoped>
